@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Все бронирования</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/styles/Style1.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/Style2.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/Style3.css}"/>
+</head>
+<body id="newBody">
+<div class="newTitle">
+    <h1 th:text="${message}"></h1>
+    <h2 th:text="${fio}"></h2>
+    <h2 th:text="${message2}"></h2>
+</div>
+<div class="adminButtons noFlex">
+    <form action="/test/logout" method="get">
+        <button type="submit"  class="blue_button_registry" id="head1Button"><p>выйти</p></button>
+    </form>
+    <form action="/test/window/admin" method="get">
+        <button type="submit"  class="blue_button_registry" id="head1Button"><p>К окну администратора</p></button>
+    </form>
+    <form action="/test/bookingStatuses/add"  method="get">
+        <button type="submit" class="blue_button_registry" ><p>добавить статус бронирования</p></button>
+    </form>
+</div>
+        <div  class="mainPictureFront Box" id="Box3">
+            <div class="Container" >
+                <table>
+                    <tr>
+                        <td>ID</td>
+                        <td>Владелец</td>
+                        <td>Дата создания</td>
+                        <td>Дата заселения</td>
+                        <td>Дата выселения</td>
+                        <td>Комната</td>
+                        <td>Статус</td>
+                        <td>Сожители</td>
+                        <td>Действия</td>
+                    </tr>
+                    <tr th:each="el : ${bookings}" >
+                        <td th:text="${el.bookingId}"></td>
+                        <td th:text="${el.clientMakingBooking.surname}"></td>
+                        <td th:text="${el.bookingMakingDate}"></td>
+                        <td th:text="${el.plannedSettlementDate}"></td>
+                        <td th:text="${el.plannedDepartureDate}"></td>
+                        <td th:text="${el.room.roomId}"></td>
+                        <td>
+                            <form th:action="'/test/bookings/' + ${el.bookingId} +'/changeStatus'" method="post">
+                            <select size="1" name="bookingStatusId" class="select-css">
+                                <option th:text="${el.bookingStatus.bookingStatusName}"/>
+                                <option th:each="elll : ${bStatuses}" th:text="${elll.bookingStatusName}" th:value="${elll.bookingStatusId}"/>
+                            </select>
+                                <button class="blue_button_registry" type="submit">поменять статус</button>
+                            </form>
+                        </td>
+                        <td><select size="1" >
+                            <option th:each="ell : ${el.persons}" th:text="${ell.surname} + ' ' + ${ell.name} + ' ' + ${ell.patronymic}" th:value="${ell.settlingPersonId}"></option>
+                        </select></td>
+                        <td><form th:action="'/test/bookings/' + ${el.bookingId} + '/accept'" method="post">
+                            <button class="blue_button_registry" type="submit">Оформить заселение</button>
+                        </form></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+</body>
+</html>
