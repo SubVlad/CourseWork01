@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Мои бронирования</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/styles/Style1.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/Style2.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/Style3.css}"/>
+</head>
+<body id="newBody">
+<div class="newTitle">
+    <h1 th:text="${message}"></h1>
+    <h2 th:text="${fio}"></h2>
+    <h2 th:text="${message2}"></h2>
+</div>
+<div class="adminButtons noFlex">
+    <form action="/test/logout" method="get">
+        <button type="submit"  class="blue_button_registry" id="head1Button"><p>выйти</p></button>
+    </form>
+    <form action="/test/window/client" method="get">
+        <button type="submit"  class="blue_button_registry" id="head1Button"><p>К окну клиента</p></button>
+    </form>
+</div>
+        <div  class="mainPictureFront Box" id="Box3">
+            <div class="Container" >
+                <table>
+                    <tr>
+                        <td>ID</td>
+                        <td>Дата создания</td>
+                        <td>Дата заселения</td>
+                        <td>Дата выселения</td>
+                        <td>Комната</td>
+                        <td>Статус</td>
+                        <td>Сожители</td>
+                        <td>Действия</td>
+                        <td> </td>
+                    </tr>
+                    <tr th:each="el : ${bookings}" >
+                        <td th:text="${el.bookingId}"></td>
+                        <td th:text="${el.bookingMakingDate}"></td>
+                        <td th:text="${el.plannedSettlementDate}"></td>
+                        <td th:text="${el.plannedDepartureDate}"></td>
+                        <td th:text="${el.room.roomId}"></td>
+                        <td th:text="${el.bookingStatus.bookingStatusName}"></td>
+                        <td><select size="1">
+                            <option th:each="ell : ${el.persons}" th:text="${ell.surname} + ' ' + ${ell.name} + ' ' + ${ell.patronymic}" th:value="ell.settlingPersonId"></option>
+                        </select></td>
+                        <td><form th:action="'/test/bookings/' + ${el.bookingId} + '/cancel'" method="post">
+                            <button class="blue_button_registry" type="submit">Отменить</button>
+                        </form></td>
+                        <td><form th:action="'/test/bookings/' + ${el.bookingId} + '/prolong'" method="post">
+                            <button class="blue_button_registry" type="submit">Продлить на</button>
+                            <input name="daysCount" placeholder=".. дней">
+                        </form></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+</body>
+</html>

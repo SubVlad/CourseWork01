@@ -1,0 +1,136 @@
+.Box {
+   background: #50026E;
+   padding: 20px 20px;
+   margin-left: auto;
+   margin-right: auto;
+   box-shadow: 3px 10px 10px 3px rgba(0,0,0,0.3);
+}
+.adminButtons *{
+    position: 0,0,0,0;
+    left:         90px;
+	top:         100px;
+}
+#Box1{
+   width: 542px;
+}
+#Box2{
+   width: auto;
+   font-size: 30px;
+}
+#Box3{
+   width: auto;
+   font-size: 18px;
+   position:   0,0,0,0;
+}
+#RoomsBox{
+   width: auto;
+   font-size: 18px;
+   position:   0,0,0,0;
+}
+#ClientBox{
+   width: auto;
+   font-size: 18px;
+   position:   0,0,0,0;
+}
+ul > li > a{
+   color : #759e9a;  
+}
+ul > li {
+   font-weight : bold;
+   padding-top:10px;
+}
+div.Container { 
+   background-color: #eeeeee;
+   border: 3px solid #888888; 
+   margin-left: auto;
+   margin-right: auto;
+   margin-bottom: 10px;
+
+}
+.pic1{ 
+   background: url("images/room01.jpg");
+}
+.pic2{ 
+   background: url("images/room02.jpg");
+}
+.pic3{ 
+   background: url("images/room03.jpg");
+}
+.pic5{ 
+   background: url("images/green01.jpg");
+}
+.pictures{
+   padding-top:   340px;  
+   background-size: cover;
+   position:   relative;
+}
+
+h1, h2, h3, h4, h5, h6 {
+   text-align : center;
+}
+h2 {
+   color : #BC8C61;
+   font-size: 25px;
+}
+p { 
+   color : white;
+   font-size: 25px;
+}
+td{
+   padding-top: 7px;
+   padding-right: 7px;
+}
+tr:nth-child(even){
+   background-color: #A0AFD0;
+}
+tr:nth-child(odd){
+   background-color: #ADB8D0;
+}
+tr:nth-child(1){
+   font-weight: bold;
+}
+td{
+   color: black;
+} 
+table{
+   margin: auto;
+   text-align: right;
+}
+@media (max-width: 1500px) {    
+   #Box3 {
+      left: 20px;
+   }
+   #RoomsBox{
+    left: 370px;
+   }
+   #ClientBox {
+      left: 150px;
+   }
+}
+@media (max-width: 1300px) {    
+   #Box3 {
+      left: 10px;
+   }
+   #RoomsBox{
+      left: 210px;
+   }
+   #ClientBox {
+      left: 0px;
+   }
+}
+@media (max-width: 900px) {    
+   #Box3 {
+      left: 5px;
+   }
+   #ClientBox {
+      left: 0px;
+   }
+}
+@media (max-width: 800px) {    
+   #Box3 {
+      left: 0px;
+   }
+   #ClientBox {
+      left: 0px;
+   }
+}

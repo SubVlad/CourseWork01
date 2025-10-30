@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Изменить данные пользователя</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/styles/Style1.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/Style2.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/Style3.css}"/>
+</head>
+<body id="newBody">
+<div class="newTitle">
+    <h1 th:text="${message}"></h1>
+    <h2 th:text="${fio}"></h2>
+</div>
+<div class="adminButtons">
+    <form action="/test/logout" method="get">
+        <button type="submit"  class="blue_button_registry" id="head1Button"><p>выйти</p></button>
+    </form>
+    <form action="/test/window/admin" method="get">
+        <button type="submit"  class="blue_button_registry" id="head1Button"><p>К окну администратора</p></button>
+    </form>
+<form action="#" th:action="@{/test/clients/all}" method="get">
+    <button type="submit" class="blue_button_registry" ><p>Назад</p></button>
+</form>
+</div>
+<div  class="mainPictureFront Box" id="Box3">
+    <div class="Container">
+
+        <form th:action="'/test/users/' + ${userId} + '/change_confirm'" method="post">
+            <table>
+                <tr>
+                    <td>Фамилия</td>
+                    <td>
+                    <input name="surname" th:value="${surname}">
+                </td></tr>
+                <tr>
+                    <td>Имя</td>
+                    <td>
+                    <input name="name" th:value="${name}">
+                </td></tr>
+                <tr>
+                    <td>Отчество</td>
+                    <td>
+                    <input name="patr" th:value="${patr}">
+                </td></tr>
+                <tr>
+                    <td>Телефон</td>
+                    <td>
+                    <input name="phone" th:value="${phone}">
+                </td></tr>
+                <tr>
+                    <td>Город</td>
+                    <td>
+                    <select size="4" name="cityId" class="select-css">
+                        <option th:text="'Не менять (' +${city}+')'" selected th:value="-1"></option>
+                        <option th:each="el : ${cities}" th:text="${el.cityName}" th:value="${el.cityId}">
+                        </option>
+                    </select>
+                </td></tr>
+                <tr>
+                    <td> </td>
+                    <td>
+                    <input name="cityAdd" placeholder="Добавить недостающий город (он заменит выбранный в списке)">
+                </td></tr>
+                <tr>
+                    <td>Э. почта</td>
+                    <td>
+                    <input name="email" th:value="${email}">
+                </td></tr>
+                <tr>
+                    <td>С./н. паспорта</td>
+                    <td>
+                    <input name="passport" th:value="${passport}">
+                </td></tr>
+                <tr>
+                    <td>Логин</td>
+                    <td>
+                    <input name="login" th:value="${login}">
+                </td></tr>
+                <tr>
+                    <td>Пароль</td>
+                    <td>
+                    <input name="password" th:value="${password}">
+                </td></tr>
+                <tr>
+                    <td>Права</td>
+                    <td>
+                    <select size="4" name="userRoleId" class="select-css">
+                        <option th:text="'Не менять (' +${userRole}+')'" selected th:value="-1"></option>
+                        <option th:each="el : ${userRoles}" th:text="${el.userRoleName}" th:value="${el.userRoleId}">
+                        </option>
+                    </select>
+                </td></tr>
+                <tr><td>
+                    <button type="submit" class="blue_button_registry"><p>Принять изменения</p></button>
+                </td></tr>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Добавить бронирование, ч.2</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/styles/Style1.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/Style2.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/Style3.css}"/>
+</head>
+<body id="newBody">
+    <div class="newTitle">
+        <h1 th:text="${message}"></h1>
+        <h2 th:text="${fio}"></h2>
+        <h2 th:text="${message2}"></h2>
+    </div>
+    <form action="/test/logout" method="get">
+        <button type="submit"  class="blue_button_registry" id="head1Button"><p>выйти</p></button>
+    </form>
+    <form action="/test/window/client" method="get">
+        <button type="submit"  class="blue_button_registry" id="head1Button"><p>К окну клиента</p></button>
+    </form>
+    <form th:action="@{/test/bookings/add}" method="get">
+        <button type="submit"  class="blue_button_registry" id="head1Button"><p>Назад</p></button>
+    </form>
+    <div  class="mainPictureFront Box" id="Box3">
+        <div class="Container">
+            <form action="/test/bookings/add_confirm2" method="post">
+                <input readonly name="date" type="date" th:value="${date}">
+                <input readonly name="daysCount" th:value="${daysCount}">
+                <h2>Доступные комнаты</h2>
+                <h2>Если вы не видите желаемую комнату,</h2>
+                <h2>значит, она уже забронирована на это время</h2>
+                <select size="4" name="roomId" class="select-css">
+                    <option th:each="el : ${rooms}" th:text="'Номер ' + ${el.roomId} + ', тип - ' + ${el.roomType.roomTypeName}" th:value="${el.roomId}">
+                    </option>
+                </select>
+                <div>
+                    <h2>Возможно, с вами будут еще гости? Если да, перечислите их</h2>
+                    <h2>Допустимо не более трех человек на бронирование</h2>
+                    <br>
+                    <table>
+                        <tr><td>Гость 1</td></tr>
+                        <tr><td>
+                            <input name="surname1" placeholder="Фамилия">
+                        </td></tr>
+                        <tr><td>
+                            <input name="name1" placeholder="Имя">
+                        </td></tr>
+                        <tr><td>
+                            <input name="patr1" placeholder="Отчество">
+                        </td></tr>
+                        <tr><td>Гость 2</td></tr>
+                        <tr><td>
+                            <input name="surname2" placeholder="Фамилия">
+                        </td></tr>
+                        <tr><td>
+                            <input name="name2" placeholder="Имя">
+                        </td></tr>
+                        <tr><td>
+                            <input name="patr2" placeholder="Отчество">
+                        </td></tr>
+                        <tr><td>Гость 3</td></tr>
+                        <tr><td>
+                            <input name="surname3" placeholder="Фамилия">
+                        </td></tr>
+                        <tr><td>
+                            <input name="name3" placeholder="Имя">
+                        </td></tr>
+                        <tr><td>
+                            <input name="patr3" placeholder="Отчество">
+                        </td></tr>
+                    </table>
+                </div>
+                <button type="submit" class="blue_button_registry">Забронировать</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
